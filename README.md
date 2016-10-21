@@ -6,7 +6,7 @@ A UIView extension adds customisable glow effect based on CALayer shadows.
 Demo
 ----
 
-![alt tag]()
+![alt tag](https://github.com/cemolcay/GlowingView/blob/master/Demo.gif?raw=true)
 
 #### Try
 
