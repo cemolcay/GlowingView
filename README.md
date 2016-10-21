@@ -64,3 +64,10 @@ fillGlowImageView?.startGlowing(
   fill: true,
   duration: 0.8)
 ```
+
+Credits
+----
+
+Code heavily refactored from
+https://github.com/thesecretlab/UIView-Glow
+
