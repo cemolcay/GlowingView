@@ -23,7 +23,6 @@ public extension UIView {
     }
   }
 
-
   /// Starts glowing view with options.
   ///
   /// - parameter color:         Glow color.
