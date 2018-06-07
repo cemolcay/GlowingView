@@ -32,6 +32,7 @@ public extension UIView {
   /// - parameter position:      Sets position of glow over view. Defaults center.
   /// - parameter duration:      Duration of one pulse of glow.
   /// - parameter shouldRepeat:  If true, repeats until stop. If not, pulses just once.
+  /// - parameter glowOnce:      Should it glow once and stop glowing or glows until `stopGlowing` called. It's not effective if repeat is on. Defauts true.
   public func startGlowing(
     color: UIColor = .white,
     fromIntensity: CGFloat = 0,
@@ -39,7 +40,8 @@ public extension UIView {
     fill: Bool = false,
     position: CGPoint? = nil,
     duration: TimeInterval = 1,
-    repeat shouldRepeat: Bool = true) {
+    repeat shouldRepeat: Bool = true,
+    glowOnce: Bool = true) {
 
     // If we're already glowing, don't bother
     guard glowLayer == nil
@@ -84,12 +86,14 @@ public extension UIView {
     animation.toValue = toIntensity
     animation.repeatCount = shouldRepeat ? .infinity : 0
     animation.duration = duration
-    animation.autoreverses = true
+    animation.autoreverses = shouldRepeat || glowOnce
+    animation.isRemovedOnCompletion = shouldRepeat || glowOnce
+    animation.fillMode = kCAFillModeForwards
     animation.timingFunction = CAMediaTimingFunction(name: kCAMediaTimingFunctionEaseInEaseOut)
     glowLayer.add(animation, forKey: "glowViewPulseAnimation")
 
     // Stop glowing after duration if not repeats
-    if !shouldRepeat {
+    if !shouldRepeat && glowOnce {
       let delay = duration * Double(Int64(NSEC_PER_SEC))
       DispatchQueue.main.asyncAfter(
         deadline: DispatchTime.now() + delay,
