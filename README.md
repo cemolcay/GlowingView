@@ -32,7 +32,7 @@ pod 'GlowingView'
 Usage
 ----
 
-Call `startGlowing` function with optional paramaters to fit your glowing needs.  
+Call `startGlowing` function with optional parameters to fit your glowing needs.  
 Call `stopGlowing` function to stop glowing effect.
   
 GlowingView adds a private glowing layer top of the target view with CALayer shadows and CABasicAnimation animations.
